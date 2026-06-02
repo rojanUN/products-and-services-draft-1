@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: sr-products-services
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sr_ps_real
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      pool-name: MyHikariCP
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: true
+
+server:
+  port: 8888
+
+logging:
+  level:
+    org.springframework.boot.context.config: WARN
