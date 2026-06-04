@@ -1,7 +1,7 @@
-/*
 package com.swifttech.sr.ps.entity;
 
 import com.swifttech.edx.dm.entity.BaseEntity;
+import com.swifttech.edx.dm.enums.StatusEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -22,9 +22,9 @@ public class ServiceClassificationEntity extends BaseEntity {
 
     private String name;
     private String description;
+    private StatusEnum status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_service_classification_id")
     private ServiceClassificationEntity parentServiceClassification;
 }
-*/

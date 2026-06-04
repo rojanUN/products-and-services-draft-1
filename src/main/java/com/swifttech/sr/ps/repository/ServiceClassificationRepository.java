@@ -1,9 +1,9 @@
 package com.swifttech.sr.ps.repository;
 
 import com.swifttech.edx.dm.repository.BaseRepository;
-import com.swifttech.sr.ps.entity.ProductClassificationEntity;
+import com.swifttech.sr.ps.entity.ServiceClassificationEntity;
 
-public interface ProductClassificationRepository extends BaseRepository<ProductClassificationEntity> {
+public interface ServiceClassificationRepository extends BaseRepository<ServiceClassificationEntity> {
 
     boolean existsByUid(long id);
     boolean existsByName(String name);

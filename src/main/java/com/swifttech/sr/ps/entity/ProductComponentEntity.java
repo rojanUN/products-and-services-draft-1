@@ -1,4 +1,3 @@
-/*
 package com.swifttech.sr.ps.entity;
 
 import com.swifttech.edx.dm.entity.BaseEntity;
@@ -33,4 +32,3 @@ public class ProductComponentEntity extends BaseEntity {
         COMMODITY
     }
 }
-*/

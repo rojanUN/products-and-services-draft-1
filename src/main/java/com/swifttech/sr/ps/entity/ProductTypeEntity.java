@@ -1,4 +1,3 @@
-/*
 package com.swifttech.sr.ps.entity;
 
 import com.swifttech.edx.dm.entity.BaseEntity;
@@ -8,6 +7,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,5 +36,9 @@ public class ProductTypeEntity extends BaseEntity {
     private Set<ProductComponentEntity> productComponents;
 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_classification_id", nullable = false)
+    private ProductClassificationEntity productClassification;
+
+
 }
-*/
