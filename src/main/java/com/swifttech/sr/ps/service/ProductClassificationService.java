@@ -6,7 +6,7 @@ import com.swifttech.edx.dm.payload.request.StatusUpdateRequest;
 import com.swifttech.edx.dm.payload.response.GlobalResponse;
 import com.swifttech.sr.ps.model.request.ProductClassificationCreateUpdateRequest;
 
-public interface roductClassificationService {
+public interface ProductClassificationService {
 
     GlobalResponse createProductClassification(ProductClassificationCreateUpdateRequest request) throws GlobalException;
 

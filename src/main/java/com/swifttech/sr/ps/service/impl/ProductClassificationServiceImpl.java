@@ -14,7 +14,7 @@ import com.swifttech.sr.ps.mapper.ProductClassificationMapper;
 import com.swifttech.sr.ps.model.request.ProductClassificationCreateUpdateRequest;
 import com.swifttech.sr.ps.model.response.ProductClassificationResponse;
 import com.swifttech.sr.ps.repository.ProductClassificationRepository;
-import com.swifttech.sr.ps.service.roductClassificationService;
+import com.swifttech.sr.ps.service.ProductClassificationService;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProductClassificationServiceImpl implements roductClassificationService {
+public class ProductClassificationServiceImpl implements ProductClassificationService {
 
     private final ProductClassificationRepository productClassificationRepository;
 

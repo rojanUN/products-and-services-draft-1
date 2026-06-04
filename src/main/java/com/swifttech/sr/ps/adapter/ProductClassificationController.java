@@ -3,7 +3,7 @@ package com.swifttech.sr.ps.adapter;
 import com.swifttech.edx.dm.exception.GlobalException;
 import com.swifttech.edx.dm.payload.response.GlobalResponse;
 import com.swifttech.sr.ps.model.request.ProductClassificationCreateUpdateRequest;
-import com.swifttech.sr.ps.service.roductClassificationService;
+import com.swifttech.sr.ps.service.ProductClassificationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ProductClassificationController {
 
-    private final roductClassificationService productClassificationService;
+    private final ProductClassificationService productClassificationService;
 
     @PostMapping("product-classification/create")
     public ResponseEntity<GlobalResponse> createProductClassification(@RequestBody @Valid ProductClassificationCreateUpdateRequest request) throws GlobalException {
