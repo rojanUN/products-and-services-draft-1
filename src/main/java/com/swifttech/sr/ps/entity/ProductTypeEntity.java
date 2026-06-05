@@ -26,13 +26,17 @@ public class ProductTypeEntity extends BaseEntity {
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "productType", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<ProductComponentEntity> productComponents;
+/*    @OneToMany(mappedBy = "productType", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST},  fetch = FetchType.LAZY)
+    private Set<ProductComponentEntity> productComponents;*/
 
+    @OneToMany(mappedBy = "productType", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST},  fetch = FetchType.LAZY)
+    private Set<ProductEntity> products;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_classification_id", nullable = false)
     private ProductClassificationEntity productClassification;
 
+    @OneToMany(mappedBy = "productType",orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    private Set<ValueComponentEntity> valueComponents;
 
 }

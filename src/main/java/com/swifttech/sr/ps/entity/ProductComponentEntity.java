@@ -1,9 +1,8 @@
+/*
 package com.swifttech.sr.ps.entity;
 
 import com.swifttech.edx.dm.entity.BaseEntity;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -18,7 +17,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "sr_product_type_component")
+@Entity(name = "sr_product_component")
 public class ProductComponentEntity extends BaseEntity {
 
     private String name;
@@ -29,6 +28,7 @@ public class ProductComponentEntity extends BaseEntity {
     @JoinColumn(name = "product_type_id")
     private ProductTypeEntity productType;
 
+*/
 /*    @Enumerated(EnumType.STRING)
     private ProductComponentType componentType;
 
@@ -36,5 +36,7 @@ public class ProductComponentEntity extends BaseEntity {
         CURRENCY,
         CURRENCY_PAIR,
         COMMODITY;
-    }*/
+    }*//*
+
 }
+*/

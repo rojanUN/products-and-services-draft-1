@@ -2,6 +2,7 @@ package com.swifttech.sr.ps.repository;
 
 import com.swifttech.edx.dm.repository.BaseRepository;
 import com.swifttech.sr.ps.entity.ServiceClassificationEntity;
+import org.springframework.data.jpa.repository.Query;
 
 public interface ServiceClassificationRepository extends BaseRepository<ServiceClassificationEntity> {
 

@@ -1,4 +1,3 @@
-/*
 package com.swifttech.sr.ps.entity;
 
 import com.swifttech.edx.dm.entity.BaseEntity;
@@ -6,10 +5,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,21 +25,18 @@ public class ServiceEntity extends BaseEntity {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+/*    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "service_category_id")
-    private BusinessEntityCategoryEntity serviceCategory;
+    private BusinessEntityCategoryEntity serviceCategory;*/
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "sr_service_value_componenet"
-            , joinColumns = @JoinColumn(name = "service_id")
-            , inverseJoinColumns = @JoinColumn(name = "value_component_id") //could also be a @ManyToOne relation.
-    )
+    @OneToMany(mappedBy = "service", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     private Set<ValueComponentEntity> valueComponents;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "service_classification_id")
     private ServiceClassificationEntity serviceClassification;
 
+    @OneToMany(mappedBy = "service", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    private Set<ProductEntity> products;
+
 }
-*/

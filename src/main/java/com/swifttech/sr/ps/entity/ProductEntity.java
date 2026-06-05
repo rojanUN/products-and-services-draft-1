@@ -1,4 +1,3 @@
-/*
 package com.swifttech.sr.ps.entity;
 
 import com.swifttech.edx.dm.entity.BaseEntity;
@@ -6,9 +5,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,27 +32,25 @@ public class ProductEntity extends BaseEntity {
 
 //    private String productComponent; //what is a product component?? "Actual data from the Product Type. Ex: NPR. Direct reference to the data"  ???? need to clarify
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER) //EAGER because the set will likely be very small 5-10. I thinks not sure.
-    @JoinTable(
-            name = "sr_product_service"
-            , joinColumns = @JoinColumn(name = "product_id")
-            , inverseJoinColumns = @JoinColumn(name = "service_id")
-    )
-    private Set<ServiceEntity> services; //this is a subset of services
+    //EAGER because the set will likely be very small 5-10. I thinks not sure.
+//    @JoinTable(
+//            name = "sr_product_service"
+//            , joinColumns = @JoinColumn(name = "product_id")
+//            , inverseJoinColumns = @JoinColumn(name = "service_id")
+//    )
+//    private Set<ServiceEntity> services; //this is a subset of services
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY) //optional false, not sure what is correct.
-    private ProductServiceClassificationEntity productServiceClassification;
+/*    @ManyToOne(optional = false, fetch = FetchType.LAZY) //optional false, not sure what is correct.
+    private ProductServiceClassificationEntity productServiceClassification;*/
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "sr_product_value_componenet"
-            , joinColumns = @JoinColumn(name = "product_id")
-            , inverseJoinColumns = @JoinColumn(name = "value_component_id") //could also be a @ManyToOne relation.
-    )
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "service_id")
+    private ServiceEntity service;
+
+    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     private Set<ValueComponentEntity> valueComponents;
 
     private boolean hasDynamicProductAttributes;
 
 
 }
-*/

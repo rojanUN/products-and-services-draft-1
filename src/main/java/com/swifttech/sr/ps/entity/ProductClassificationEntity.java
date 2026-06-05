@@ -2,7 +2,10 @@ package com.swifttech.sr.ps.entity;
 
 import com.swifttech.edx.dm.entity.BaseEntity;
 import com.swifttech.edx.dm.enums.StatusEnum;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -25,6 +28,8 @@ public class ProductClassificationEntity extends BaseEntity {
 
     private String name;
     private String description;
+
+    @Enumerated(EnumType.STRING)
     private StatusEnum status;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,7 +38,11 @@ public class ProductClassificationEntity extends BaseEntity {
 
     @OneToMany(
             mappedBy = "productClassification",
-            orphanRemoval = true
+            orphanRemoval = true,
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY
     )
     private Set<ProductTypeEntity> productTypes;
+
+    @OneToMany(mappedBy = "productClassification", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    private Set<ValueComponentEntity> valueComponents;
 }
