@@ -3,13 +3,11 @@ package com.swifttech.sr.ps.service.impl;
 import com.swifttech.edx.dm.am.enums.ErrorCodeEnum;
 import com.swifttech.edx.dm.am.enums.SuccessCodeEnum;
 import com.swifttech.edx.dm.builder.ServiceResponseBuilder;
-import com.swifttech.edx.dm.entity.BaseEntity;
 import com.swifttech.edx.dm.exception.GlobalException;
 import com.swifttech.edx.dm.payload.request.PaginationRequest;
 import com.swifttech.edx.dm.payload.request.StatusUpdateRequest;
 import com.swifttech.edx.dm.payload.response.DataPaginationResponse;
 import com.swifttech.edx.dm.payload.response.GlobalResponse;
-import com.swifttech.edx.dm.repository.BaseRepository;
 import com.swifttech.edx.dm.util.Helper;
 import com.swifttech.sr.ps.entity.ServiceClassificationEntity;
 import com.swifttech.sr.ps.mapper.ServiceClassificationMapper;
@@ -17,6 +15,7 @@ import com.swifttech.sr.ps.model.request.ServiceClassificationCreateUpdateReques
 import com.swifttech.sr.ps.model.response.ServiceClassificationResponse;
 import com.swifttech.sr.ps.repository.ServiceClassificationRepository;
 import com.swifttech.sr.ps.service.ServiceClassificationService;
+import com.swifttech.sr.ps.utils.Utility;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +36,7 @@ public class ServiceClassificationServiceImpl implements ServiceClassificationSe
         validateServiceClassification(request);
         ServiceClassificationEntity serviceClassificationEntity = ServiceClassificationMapper.toEntity(request);
         attachParent(request, serviceClassificationEntity);
-        ServiceClassificationEntity savedServiceClassificationEntity = handlePersist(serviceClassificationEntity, serviceClassificationRepository);
+        ServiceClassificationEntity savedServiceClassificationEntity = Utility.handlePersist(serviceClassificationEntity, serviceClassificationRepository);
         ServiceClassificationResponse serviceClassificationResponse = ServiceClassificationMapper.toResponse(savedServiceClassificationEntity);
         return ServiceResponseBuilder.buildSuccessResponse(SuccessCodeEnum._100.getMessage(), serviceClassificationResponse);
     }
@@ -48,7 +47,7 @@ public class ServiceClassificationServiceImpl implements ServiceClassificationSe
         ServiceClassificationEntity serviceClassificationEntity = findServiceClassificationEntityById(id);
         ServiceClassificationMapper.toUpdate(request, serviceClassificationEntity);
         attachParent(request, serviceClassificationEntity);
-        handlePersist(serviceClassificationEntity, serviceClassificationRepository);
+        Utility.handlePersist(serviceClassificationEntity, serviceClassificationRepository);
         return ServiceResponseBuilder.buildSuccessResponse(SuccessCodeEnum._100.getMessage());
     }
 
@@ -59,7 +58,7 @@ public class ServiceClassificationServiceImpl implements ServiceClassificationSe
         }
         ServiceClassificationEntity serviceClassificationEntity = findServiceClassificationEntityById(id);
         serviceClassificationEntity.setStatus(request.getStatus());
-        handlePersist(serviceClassificationEntity, serviceClassificationRepository);
+        Utility.handlePersist(serviceClassificationEntity, serviceClassificationRepository);
         return ServiceResponseBuilder.buildSuccessResponse(SuccessCodeEnum._100.getMessage());
     }
 
@@ -106,11 +105,6 @@ public class ServiceClassificationServiceImpl implements ServiceClassificationSe
 
     private ServiceClassificationEntity findServiceClassificationEntityById(Long id) throws GlobalException {
         return serviceClassificationRepository.findById(id).orElseThrow(() -> new GlobalException(ErrorCodeEnum._002.getMessage()));
-    }
-
-    private <T extends BaseEntity> T handlePersist(T entity, BaseRepository<T> repository) {
-        log.info("persisting({}, {})", entity.getClass().getSimpleName(), repository);
-        return repository.save(entity);
     }
 
     private void attachParent(ServiceClassificationCreateUpdateRequest request, ServiceClassificationEntity entity) throws GlobalException {

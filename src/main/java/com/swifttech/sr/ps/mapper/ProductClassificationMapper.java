@@ -27,15 +27,11 @@ public final class ProductClassificationMapper {
         if (request == null) {
             return null;
         }
-        ProductClassificationEntity entity = ProductClassificationEntity.builder()
+        return ProductClassificationEntity.builder()
                 .name(request.getName())
                 .description(request.getDescription())
                 .status(StatusEnum.ACTIVE)
                 .build();
-
-
-
-        return entity;
     }
 
     public static void toUpdate(ProductClassificationCreateUpdateRequest request, ProductClassificationEntity entity) {
