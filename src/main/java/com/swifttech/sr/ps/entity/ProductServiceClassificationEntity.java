@@ -1,4 +1,3 @@
-/*
 package com.swifttech.sr.ps.entity;
 
 import com.swifttech.edx.dm.entity.BaseEntity;
@@ -44,4 +43,3 @@ public class ProductServiceClassificationEntity extends BaseEntity {
     )
     private Set<ValueComponentEntity> valueComponents;  //This could also easily be a @ManyToOne relation, this is ambiguous in the miro board that is currently built (date:2026/05/22 11:54AM )
 }
-*/

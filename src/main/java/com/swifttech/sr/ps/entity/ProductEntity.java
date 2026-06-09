@@ -52,5 +52,8 @@ public class ProductEntity extends BaseEntity {
 
     private boolean hasDynamicProductAttributes;
 
+    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    private Set<DynamicProductAttributeEntity> dynamicProductAttributes;
+
 
 }
