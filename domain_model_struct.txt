@@ -1,0 +1,418 @@
+# || Attribute || Data type || Behaviours || Description
+1 || ID || String || Required, System Generated || Unique identifier of remittance quote
+2 || Remittance Transaction || Association | Link of ref data || Required || Reference to remittance transaction
+3 || Sending Amount || Decimal || Editable || Amount entered by sender
+4 || Receiving Amount || Decimal || Calculated || Amount receiver will receive
+5 || Rate || Link || Calculated || Exchange rate applied
+6 || Applied Margin || Link || Calculated || Margin applied to rate
+7 || Service Charge || Decimal || Calculated || Transaction fee
+8 || Tax || Decimal || Calculated || Applicable tax
+9 || Discount || Decimal || Optional || Discount amount
+10 || Status || Enum || System Controlled || Draft, Active, Expired
+# || Attribute || Data type || Behaviours || Description
+1 || Transaction ID || String || System-generated, unique, immutable || Unique identifier assigned to each remittance transaction.
+2 || Sending Currency || Reference (Currency) || Required, selected from configured currencies || Currency in which the sender initiates the transaction.
+3 || Receiving Currency || Reference (Currency) || Required, validated against corridor and service configuration || Currency in which the beneficiary receives the funds.
+4 || Sending Country || Reference (Country) || Required, selected from configured country list || Country from which the remittance transaction originates.
+5 || Receiving Country || Reference (Country) || Required, selected from configured country list || Destination country where the remittance is delivered.
+6 || Corridor || Reference (Corridor) || Auto-derived or manually selected based on sending and receiving countries || Defines the remittance route between source and destination countries and determines applicable partners, rails, pricing, and compliance rules.
+# || Attribute || Data type || Behaviours || Description
+1 || Product and Service Classification ID || System Generated ID || Required, Unique || Unique identifier of the Product and Service Classification
+2 || Product and Service Classification Name || String || Required || Name of the Product and Service Classification
+3 || Product Classification || Link || Required || Reference to Product Classification
+4 || Service Classification || Association || Required || Reference to Service Classification
+5 || List of Value Components || Link || Optional || List of Value Components applicable to the classification
+# || Attribute || Data type || Behaviours || Description
+1 || ID || System Generated ID || Required, Unique || Unique identifier of Product Classification
+2 || Name || String || Required || Name of Product Classification
+3 || Description || String || Optional || Description of Product Classification
+4 || Product Classification || Self Reference || Optional || Parent classification for hierarchy support
+5 || Status ||  ||  || 
+# || Attribute || Data type || Behaviours || Description
+1 || Product ID || System Generated ID || Required, Unique || Unique identifier of Product
+2 || Product Name || String || Required || Name of Product
+3 || Product Classification || Link || Required || Product Classification assigned to the Product
+4 || Product Type || Reference Data || Required || Defines the nature of Product
+5 || Product Component || Reference Data || Required || Actual data source linked to Product Type
+6 || Product and Service Classification || Link || Required || Defines valid Product-Service relationship
+7 || Has Dynamic Attributes || Link || Optional || Indicates whether dynamic attributes are enabled
+8 || Service || Link || Optional || Services linked to Product
+# || Attribute || Data type || Behaviours || Description
+# || Attribute || Data Type || Behaviour || Description
+1 || Attribute ID || System Generated ID || Required, Unique || Unique identifier of Dynamic Attribute
+2 || Product ID || Association || Required || Reference to Product
+3 || Product Name || Derived || required || Product Name associated with Product ID
+4 || Product Classification || Derived || Required || Product Type associated with Product
+5 || Attribute Name || String || Required || Name of Dynamic Attribute
+6 || Attribute Value || String || Optional || Value of Dynamic Attribute
+7 || Attribute Type || Reference Data || Required || Data type of the Attribute
+# || Attribute || Data type || Behaviours || Description
+1 || Product || Link || Required || Product linked to the service
+2 || Service || Link || Required || Service linked to the product
+3 || List of Value Components || Link || Optional || Value Components applicable to the Product-Service relationship
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique, immutable || Unique identifier of the service.
+2 || Name || String || Required, unique within Service Classification || Name of the service offered (e.g., Bank Transfer, Wallet Transfer).
+3 || Service Category || Link || Required, configurable || Categorizes the service as Enterprise Service, Partner Service, Remittance Service, Forex Service, etc.
+4 || Product and Service Classification || Link ||  || 
+5 || Service Classification || Link ||  || 
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique || Unique identifier of the service classification.
+2 || Name || String || Required, unique within hierarchy level || Name of the service classification.
+3 || Description || Text || Optional || Description of the classification and its purpose.
+4 || Service Classification || Reference (Self) || Optional, hierarchical || Parent classification used to create service classification hierarchy.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique || Unique identifier of the quote.
+2 || Product || Link || Required || Product for which the quote is generated.
+3 || Service || Link || Required || Service associated with the quote.
+4 || List of Value Computation || Link || Auto-calculated, multiple values supported || List of all pricing, fee, tax, commission, and margin computations applied to the quote.
+5 || Transaction || Link || Generated upon transaction creation || Links the quote to the transaction created from it.
+# || Attribute || Data Type || Behaviours || Description
+1 || Idempotency Key || String || Unique, system validated || Prevents duplicate transaction processing.
+2 || List of Parties || Link || Multiple allowed || Participants involved in the transaction such as sender, receiver, agent, and intermediary.
+3 || Payment Rail || Reference (Payment Rail) || Required || Rail used to process the transaction (Bank, Wallet, Cash Pickup, SWIFT, etc.).
+4 || Product Services || Link || Required || Product-Service combination applicable to the transaction.
+5 || Partner || Link || Required || Partner responsible for fulfilling or processing the transaction.
+6 || Source of Transaction (Channel) || Link || Required || Originating channel such as Mobile App, API, Portal, Agent, or Branch.
+7 || History (List of Mutated States) || Collection (Transaction State History) || System-maintained, immutable || Stores the complete lifecycle history of the transaction and all state transitions.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique || Unique identifier of the party.
+2 || Name || String || Required || Name of the party involved in the transaction.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || STRING/ String || System-generated, unique || Unique identifier of the margin configuration.
+2 || Margin Type (Computation Model) || Link || Required || Defines how the margin is calculated (Fixed, Percentage, Tiered, etc.).
+3 || Margin Value || Decimal || Required, validated against limits || Margin value used in pricing calculations.
+4 || Partner || Link || Required || Partner to whom the margin applies.
+5 || Corridor ||  ||  || 
+6 || Business Channel ||  ||  || 
+7 || Product ||  ||  || 
+8 || Service ||  ||  || 
+9 || Margin History || Link ||  || 
+10 || Date From || Date || Required || Effective start date of the margin configuration.
+11 || Date To || Date || Optional || Expiry date of the margin configuration.
+12 || Status || Master Data || System controlled || Status of the margin record (Draft, Active, Expired, Inactive).
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || STRING/ String || System-generated, unique || Unique identifier of the margin configuration.
+2 || Margin Type (Computation Model) || Link || Required || Defines how the margin is calculated (Fixed, Percentage, Tiered, etc.).
+3 || Margin Value || Decimal || Required, validated against limits || Margin value used in pricing calculations.
+4 || Partner || Link || Required || Partner to whom the margin applies.
+5 || Corridor ||  ||  || 
+6 || Business Channel ||  ||  || 
+7 || Product ||  ||  || 
+8 || Service ||  ||  || 
+9 || Date From || Date || Required || Effective start date of the margin configuration.
+10 || Date To || Date || Optional || Expiry date of the margin configuration.
+11 || Status || Master Data || System controlled || Status of the margin record (Draft, Active, Expired, Inactive).
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique || Unique identifier of the rate record.
+2 || Partner || Link || Optional / Configurable || Partner-specific rate configuration.
+3 || Rate Source || Link || Required || Source of the rate (Manual, API, Market Feed, Treasury Feed).
+4 || Currency (Against Base Currency) || Link || Required || Currency pair against the configured base currency.
+5 || Rate Factor || Enum || Required || Determines whether multiplication or division is used in calculations.
+6 || Margin Format ||  ||  || 
+7 || Format Mask ||  ||  || 
+8 || Margin ||  ||  || 
+9 || Bid Rate (Buy Rate) || Link || Auto-calculated / Editable || Rate applied when purchasing foreign currency.
+10 || Rate History || Link ||  || 
+11 || Date From || Date || Required || Effective start date of the rate.
+12 || Date To || Date || Optional || Effective end date of the rate.
+13 || Status || Master Data || System controlled || Status of the rate configuration (Draft, Published, Expired, Inactive).
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique || Unique identifier of the rate record.
+2 || Bid Rate Value || Link || Optional / Configurable || Partner-specific rate configuration.
+3 || Currency || Link || Required || Source of the rate (Manual, API, Market Feed, Treasury Feed).
+4 || Rate Source || Link || Required || Currency pair against the configured base currency.
+5 || Bid Rate History || Enum || Required || Determines whether multiplication or division is used in calculations.
+6 || Partner ||  ||  || 
+7 || Date From ||  ||  || 
+8 || Date To ||  ||  || 
+9 || Status ||  ||  || 
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated || Unique identifier of the historical record.
+2 || Partner || Decimal || Immutable after creation || Historical bid rate value.
+3 || Rate Source || Reference (Currency Pair) || Required || Currency pair associated with the rate.
+4 || Currency || Master Data || Required || Source from which the rate was obtained.
+5 || Rate Factor || DateTime || System maintained || Date and time the rate became effective.
+6 || Margin Format || DateTime || System maintained || Date and time the rate ceased to be effective.
+7 || Format Mask || Master Data || System maintained || Status of the historical rate record.
+ || Margin ||  ||  || 
+ || Bid Rate ||  ||  || 
+ || Date From ||  ||  || 
+ || Date To ||  ||  || 
+ || Status ||  ||  || 
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated || Unique identifier of the historical record.
+2 || Rate Value || Decimal || Immutable after creation || Historical bid rate value.
+3 || Currency Pair || Reference (Currency Pair) || Required || Currency pair associated with the rate.
+4 || Rate Source || Master Data || Required || Source from which the rate was obtained.
+5 || Date From || DateTime || System maintained || Date and time the rate became effective.
+6 || Date To || DateTime || System maintained || Date and time the rate ceased to be effective.
+7 || Status || Master Data || System maintained || Status of the historical rate record.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique, immutable || Unique identifier of the currency pair.
+2 || Currency Pair Code || String || Auto-generated or configurable, unique || Code representing the currency pair (e.g., USD/NPR, USD/EUR).
+3 || Currency 1 || Reference (Currency) || Required, active currency only || Base currency of the currency pair.
+4 || Currency 2 || Reference (Currency) || Required, active currency only || Counter or quote currency of the currency pair.
+5 || Status || Master Data || System controlled || Status of the currency pair (Draft, Active, Inactive, Archived).
+6 || Corridor || Reference (Corridor) || Required || Corridor in which the currency pair is valid and applicable.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique, immutable || Unique identifier of the corridor.
+2 || Corridor Code || String || Unique, configurable || Code representing the corridor (e.g., NP-IN, US-NP).
+3 || Country 1 || Reference (Country) || Required || Origin country of the corridor.
+4 || Country 2 || Reference (Country) || Required || Destination country of the corridor.
+5 || Corridor Limit || Reference (Corridor Limit) || Required || Transaction and liquidity limits applicable to the corridor.
+6 || Status || Master Data || System controlled || Status of the corridor (Active, Inactive, Suspended).
+7 || AML Check || Boolean || Configurable || Indicates whether AML validation is required for transactions within the corridor.
+8 || Liquidity || Boolean || Configurable || Indicates whether liquidity monitoring and validation are enforced.
+9 || Compliance Check || Boolean || Configurable || Indicates whether compliance validation is Required for the corridor.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique || Unique identifier of the corridor limit configuration.
+2 || Minimum Transaction || Decimal || Required, must be ≥ 0 || Minimum transaction amount allowed in the corridor.
+3 || Maximum Transaction || Decimal || Required, must be greater than minimum transaction || Maximum transaction amount allowed per transaction.
+4 || Daily Limit || Decimal || Required || Maximum cumulative transaction amount allowed per day.
+5 || Monthly Limit || Decimal || Required || Maximum cumulative transaction amount allowed per month.
+# || Attribute || Data Type || Behaviours || Description
+1 || Country Name || String || Required, unique || Official country name.
+2 || Alpha-2 Code || String || ISO standard, unique || ISO 3166-1 Alpha-2 country code.
+3 || Alpha-3 Code || String || ISO standard, unique || ISO 3166-1 Alpha-3 country code.
+4 || Numeric || Integer || ISO standard, unique || ISO 3166-1 numeric country code.
+5 || Currencies || Reference (Currency) || Multiple values supported || List of currencies associated with the country.
+6 || Dial Code || String || Configurable || International dialing code of the country.
+7 || Timezone || String || Configurable, multiple supported || Timezone(s) applicable to the country.
+8 || Number Format || Reference (Number Format) || Required || Number formatting standard used in the country.
+# || Attribute || Data Type || Behaviours || Description
+1 || Name || String || Required, unique || Name of the number format configuration.
+2 || Decimal Format || String || Required || Character used as decimal separator.
+3 || Thousand Separator || String || Required || Character used as thousand separator.
+4 || Decimal Place || Integer || Required, non-negative || Number of decimal places to display.
+5 || Number Format Pattern || String || Required || Pattern defining how numbers are displayed (e.g., 1,234.56 or 1.234,56).
+# || Attribute || Data Type || Behaviours || Description
+1 || Alpha-3 Code || String || ISO standard, unique || ISO 4217 currency code (e.g., USD, NPR, EUR).
+2 || Numeric || Integer || ISO standard, unique || ISO 4217 numeric currency code.
+3 || Name || String || Required || Currency name (e.g., US Dollar, Nepalese Rupee).
+4 || Country || Reference (Country) || Required || Country associated with the currency.
+5 || Symbol || String || Configurable || Symbol used to represent the currency (e.g., $, €, NPR).
+6 || Currency Classification || Reference (Currency Classification) || Required || Classification of the currency.
+7 || Default Rate Format || Enum || Required || Default rate calculation format used for exchange rate display and calculation.
+8 || Default Rate Masking || String || Required || Defines the display precision and formatting mask for currency rates.
+# || Attribute || Data Type || Behaviours || Description
+1 || Currency Classification ID || String || System-generated, unique || Unique identifier of the currency classification.
+2 || Currency Classification Name || Master Data / Enum || Configurable, unique || Classification of currency such as Major Currency, Emerging Currency, Exotic Currency, Digital Currency, etc.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System Generated, Unique || Unique identifier for the Accounting System.
+2 || Name || String || Editable || Name of the accounting system integration.
+3 || Account Category || Reference (Account Category) || Select from master data || Defines the account category managed by the accounting system.
+4 || Dual Accounting Required || Boolean || True/False || Indicates whether double-entry accounting is required.
+5 || Accounting System Type || Reference (Accounting System Type) || Select from master data || Type of accounting platform or ledger.
+6 || Accounting System Config || Reference (Accounting System Config) || Configurable || Integration configuration details.
+7 || Date From || DateTime || Effective Date || Validity start date.
+8 || Date To || DateTime || Expiry Date || Validity end date.
+9 || Status || Enum || Active/Inactive || Current status of the accounting system.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System Generated || Unique configuration identifier.
+2 || Integration Type || Enum || Configurable || Defines API, File-Based, Direct DB, etc.
+3 || Base URL || String || Editable || Endpoint URL used for integration.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System Generated || Unique identifier.
+2 || Name || String || Editable || Name of accounting system type.
+3 || Description || String || Editable || Description of the accounting system type.
+# || Attribute || Data Type || Behaviours || Description
+1 || Virtual Account ID || String || System Generated || Unique virtual account identifier.
+2 || Virtual Account Name || String || Editable || Name of virtual account.
+3 || Currency || Reference (Currency) || Required || Currency maintained in account.
+4 || Currency Conversion Type || Reference (Conversion Type) || Configurable || Defines conversion behavior.
+5 || Value Computation || Reference (Value Computation) || Configurable || Balance calculation methodology.
+6 || Opening Balance || Decimal || Calculated/Manual || Initial balance amount.
+7 || Closing Balance || Decimal || Calculated || Final balance after processing.
+8 || Current Balance || Decimal || Real-Time Calculated || Available balance.
+9 || Application User || Reference || Assigned || Owner of the virtual account.
+10 || Virtual Account Operation || Enum || Debit/Credit/Both || Permitted account operations.
+11 || Chart Of Accounts || Reference (Chart Of Accounts) || Required || Linked accounting ledger account.
+12 || Accounting System || Reference (Accounting System) || Required || Connected accounting platform.
+13 || Settlement Rail || Reference || Configurable || Settlement mechanism used.
+# || Attribute || Data Type || Behaviours || Description
+1 || Chart of Account ID || String || System Generated || Unique account identifier.
+2 || Chart of Account Name || String || Editable || Name of ledger account.
+3 || Chart of Account || String || Editable || Account title or hierarchy reference.
+4 || Account Code || String || Unique || Financial account code.
+5 || Account Category || Reference (Account Category) || Required || Category assigned to account.
+# || Attribute || Data Type || Behaviours || Description
+1 || Account Category ID || String || System Generated || Unique identifier.
+2 || Account Category Name || String || Editable || Category name.
+3 || Nature of Account || Enum || Asset/Liability/Equity/Revenue/Expense || Defines accounting nature.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System Generated || Unique identifier.
+2 || Name || String || Editable || Conversion type name.
+3 || Description || String || Editable || Explanation of conversion behavior.
+# || Attribute || Data Type || Behaviours || Description
+1 || Channel ID || String || System Generated || Unique channel identifier.
+2 || Channel Name || String || Editable || Name of channel.
+3 || Channel Group || Reference (Channel Group) || Required || Group classification.
+4 || Services || Reference (Services) || Multiple Allowed || Services offered through channel.
+5 || Business Entity Category || Reference || Required || Business classification associated with channel.
+# || Attribute || Data Type || Behaviours || Description
+1 || Channel Group ID || String || System Generated || Unique identifier.
+2 || Channel Group Name || String || Editable || Group name.
+3 || Description || String || Editable || Description of group.
+# || Attribute || Data Type || Behaviours || Description
+1 || Business Entity Category ID || String || System Generated || Unique identifier.
+2 || Business Entity Category Name || String || Editable || Category name.
+# || Attribute || Data Type || Behaviours || Description
+1 || Value Computation ID || String || System Generated || Unique identifier.
+2 || Value Computation Name || String || Editable || Name of computation.
+3 || Value Component || Reference (Value Component) || Required || Component being calculated.
+4 || Value Computation Based On || Reference || Configurable || Basis for calculation.
+5 || Computation Model || Reference (Computation Model) || Required || Calculation methodology.
+6 || Computation Event || Reference (Application Event) || Trigger Based || Event initiating computation.
+7 || Value Computation Applies To || String || Configurable || Entity receiving computation.
+8 || Value Movement || Reference || Required || Defines movement of value.
+9 || Date From || DateTime || Effective Date || Start validity date.
+10 || Date To || DateTime || Expiry Date || End validity date.
+11 || Status || Enum || Active/Inactive || Current status.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System Generated || Unique identifier.
+2 || Name || String || Editable || Component name.
+3 || Description || String || Editable || Description of component.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System Generated || Unique identifier.
+2 || Entity Name || String || Configurable || Source entity.
+3 || Attribute Name || String || Configurable || Source attribute.
+4 || Label || String || Editable || User-friendly label.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System Generated || Unique identifier.
+2 || Entity Name || String || Editable || Direction name (Incoming, Outgoing, Internal).
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System Generated || Unique identifier.
+2 || Entity Name || String || Editable || Entity participating in money flow.
+# || Attribute || Data Type || Behaviours || Description
+1 || Computation Model ID || String || System Generated || Unique identifier.
+2 || Computation Model Name || String || Editable || Name of model.
+3 || Computation Model Type || Reference (Computation Model Type) || Required || Type of computation.
+4 || Computation Model || JSON/Text || Configurable || Formula or computation definition.
+# || Attribute || Data Type || Behaviours || Description
+1 || Computation Model Type ID || String || System Generated || Unique identifier.
+2 || Computation Model Type Name || Enum || Flat/Tiered/Formula-Based || Type of computation model.
+# || Attribute || Data Type || Behaviours || Description
+1 || Value Type || Enum || Percentage/Amount || Type of value.
+2 || Value || Decimal || Configurable || Flat computation value.
+# || Attribute || Data Type || Behaviours || Description
+1 || Value Type || Enum || Percentage/Amount || Type of tier value.
+2 || Value || Decimal || Configurable || Computed amount/value.
+3 || Sequence || Integer || Ordered || Tier sequence number.
+4 || Value From || Decimal || Range Start || Minimum threshold.
+5 || Value To || Decimal || Range End || Maximum threshold.
+# || Attribute || Data Type || Behaviours || Description
+1 || Value Flow ID || String || System Generated || Unique identifier.
+2 || Value Flow Name || String || Editable || Name of flow.
+3 || Stage Flow || Reference (Stage Flow) || Ordered || Sequence of stages.
+4 || Version || String || Version Controlled || Flow version.
+5 || Status || Enum || Active/Inactive || Current state.
+6 || Date From || DateTime || Effective Date || Start date.
+7 || Date To || DateTime || Expiry Date || End date.
+# || Attribute || Data Type || Behaviours || Description
+1 || Stage Flow ID || String || System Generated || Unique identifier.
+2 || Order || Integer || Ordered || Sequence within flow.
+3 || Stage || Reference (Stage) || Required || Associated processing stage.
+# || Attribute || Data Type || Behaviours || Description
+1 || Stage ID || String || System Generated || Unique identifier.
+2 || Stage Name || String || Editable || Name of stage.
+3 || Processor Flow || Reference (Processor Flow) || Required || Processing sequence.
+4 || Action (Optional) || String || Optional || Action performed.
+5 || Consume Event || Reference (Application Event) || Event Driven || Event consumed by stage.
+6 || Publish Event || Reference (Application Event) || Event Driven || Event emitted after processing.
+# || Attribute || Data Type || Behaviours || Description
+1 || Event ID || String || System Generated || Unique event identifier.
+2 || Event Name || String || Editable || Name of event.
+3 || Event Type || String || Configurable || Event category/type.
+4 || Event Properties || Reference (Event Properties) || Configurable || Event metadata.
+# || Attribute || Data Type || Behaviours || Description
+1 || Key || String || Unique within Event || Property name.
+2 || Value || String || Configurable || Property value.
+3 || Value Type || String || Configurable || Data type of value.
+# || Attribute || Data Type || Behaviours || Description
+1 || Processor ID || String || System Generated || Unique processor flow identifier.
+2 || Order (Parallel/Sequential) || Enum || Parallel/Sequential || Execution order.
+3 || Processor || Reference (Processor) || Required || Processor to execute.
+# || Attribute || Data Type || Behaviours || Description
+1 || Processor ID || String || System Generated || Unique processor identifier.
+2 || Processor Name || String || Editable || Name of processor.
+3 || Value Component || Reference (Value Component) || Required || Component processed.
+4 || Application Resource || String/Reference || Configurable || Service, API, or resource performing the processing.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique || Unique identifier of the party.
+2 || Name || String || Required || Name of the party involved in the transaction.
+ || Relation ||  ||  || 
+ || Settlement Profile ||  ||  || 
+ || SLO ||  ||  || 
+ || Limits and Constraints ||  ||  || 
+ || EAM Required ||  ||  || 
+ || Maximum Transaction Value ||  ||  || 
+ || Maximum Transaction Value per day ||  ||  || 
+# || Attribute || Data Type || Behaviours || Description
+1 || Relation ID || String || System-generated, unique || Unique identifier of the party.
+2 || Relation Name || String || Required || Name of the party involved in the transaction.
+ || Relation Type ||  ||  || 
+ || Field ||  ||  || 
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique || Unique identifier of the party.
+2 || Name || String || Required || Name of the party involved in the transaction.
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique || Unique identifier of the party.
+2 || Settlement Cycle ||  ||  || 
+ || Settlement Time ||  ||  || 
+ || Cutoff Day ||  ||  || 
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique || Unique identifier of the party.
+2 || Name || String || Required || Name of the party involved in the transaction.
+ || Application User ||  ||  || 
+ || Channels ||  ||  || 
+ || Products ||  ||  || 
+ || Services ||  ||  || 
+ || Virtual Accounts ||  ||  || 
+ || Business Entity Category ||  ||  || 
+# || Attribute || Data Type || Behaviours || Description
+1 || ID || String || System-generated, unique || Unique identifier of the party.
+2 || Name || String || Required || Name of the party involved in the transaction.
+# || Attribute || Data Type || Behaviours || Description
+1 || Login Attribute ||  ||  || 
+2 || Credentials ||  ||  || 
+3 || Individual ||  ||  || 
+4 || User Type ||  ||  || 
+5 || Status ||  ||  || 
+6 || Activity Logs ||  ||  || 
+7 || User Group ||  ||  || 
+8 || User Roles ||  ||  || 
+9 || Device Info ||  ||  || 
+10 || User Profile ||  ||  || 
+# || Attribute || Data Type || Behaviours || Description
+1 || User Type ID || String || System-generated, unique || Unique identifier of the party.
+2 || User Type Name || String || Required || Name of the party involved in the transaction.
+3 || Description ||  ||  || 
+# || Attribute || Data Type || Behaviours || Description
+1 || ID ||  ||  || 
+2 || User Info ||  ||  || 
+3 || First Name ||  ||  || 
+4 || Middle Name ||  ||  || 
+5 || Last Name ||  ||  || 
+6 || Email ||  ||  || 
+7 || Gender ||  ||  || 
+8 || Date of Birth ||  ||  || 
+9 || Origin ||  ||  || 
+10 || Residing Country ||  ||  || 
+ || Contact Number ||  ||  || 
+ || Address Information ||  ||  || 
+ || Occupation ||  ||  || 
+ || Income ||  ||  || 
+ || Due Diligence ||  ||  || 
+ || Supporting Documents ||  ||  || 
+# || Attribute || Data Type || Behaviours || Description
+1 || ID ||  ||  || 
+2 || User Info ||  ||  || 
+3 || Key Personnel ||  ||  || 
+4 || Position ||  ||  || 
+5 || Organization Type ||  ||  || 
+6 || Legal Profile ||  ||  || 
+7 || Operational Profile ||  ||  || 
+8 || Contact Details ||  ||  || 
+9 || Due Diligence ||  ||  || 
+10 || Supporting Documents ||  ||  || 

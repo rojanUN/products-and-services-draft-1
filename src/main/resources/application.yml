@@ -2,7 +2,7 @@ spring:
   application:
     name: sr-products-services
   datasource:
-    url: jdbc:postgresql://localhost:5432/sr_ps_real
+    url: jdbc:postgresql://localhost:5432/sr_ps_domain
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
