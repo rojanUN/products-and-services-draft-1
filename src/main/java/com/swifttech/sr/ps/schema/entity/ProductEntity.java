@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -44,9 +45,13 @@ public class ProductEntity extends BaseEntity {
     @JoinColumn(name = "product_and_service_classification_id", nullable = false)
     private ProductAndServiceClassificationEntity productAndServiceClassification;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "service_id")
-    private ServiceEntity service;
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "sr_product_service",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "service_id")
+    )
+    private Set<ServiceEntity> services = new HashSet<>();
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinTable(
@@ -54,10 +59,10 @@ public class ProductEntity extends BaseEntity {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "value_component_id")
     )
-    private Set<ValueComponentEntity> valueComponents;
+    private Set<ValueComponentEntity> valueComponents = new HashSet<>();
 
-    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    private Set<DynamicProductAttributeEntity> dynamicProductAttributes;
+    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    private Set<DynamicProductAttributeEntity> dynamicProductAttributes = new HashSet<>();
 
     private boolean hasDynamicAttributes;
 

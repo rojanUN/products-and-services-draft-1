@@ -12,6 +12,7 @@ import com.swifttech.edx.dm.util.Helper;
 import com.swifttech.sr.ps.schema.entity.ServiceClassificationEntity;
 import com.swifttech.sr.ps.schema.mapper.ServiceClassificationMapper;
 import com.swifttech.sr.ps.schema.model.request.ServiceClassificationCreateUpdateRequest;
+import com.swifttech.sr.ps.schema.model.response.ClassificationHierarchyResponse;
 import com.swifttech.sr.ps.schema.model.response.ServiceClassificationResponse;
 import com.swifttech.sr.ps.schema.repository.ServiceClassificationRepository;
 import com.swifttech.sr.ps.schema.service.ServiceClassificationService;
@@ -22,7 +23,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @Service
@@ -106,13 +109,50 @@ public class ServiceClassificationServiceImpl implements ServiceClassificationSe
                 .orElseThrow(() -> new GlobalException(ErrorCodeEnum._002.getMessage()));
     }
 
+    @Override
+    public GlobalResponse findServiceClassificationHierarchy() throws GlobalException {
+        List<ServiceClassificationEntity> roots = serviceClassificationRepository.findByParentClassificationIsNull();
+        List<ClassificationHierarchyResponse> tree = roots.stream()
+                .map(root -> buildHierarchyTree(root, new HashSet<>()))
+                .toList();
+        return ServiceResponseBuilder.buildSuccessResponse(SuccessCodeEnum._100.getMessage(), tree);
+    }
+
+    private ClassificationHierarchyResponse buildHierarchyTree(ServiceClassificationEntity entity, Set<Long> visited) {
+        if (visited.contains(entity.getUid())) {
+            return ClassificationHierarchyResponse.builder()
+                    .id(entity.getUid())
+                    .name(entity.getName() + " (cycle detected)")
+                    .description(entity.getDescription())
+                    .status(entity.getStatus())
+                    .children(List.of())
+                    .build();
+        }
+        visited.add(entity.getUid());
+        List<ServiceClassificationEntity> children = serviceClassificationRepository
+                .findByParentClassificationUid(entity.getUid());
+        return ClassificationHierarchyResponse.builder()
+                .id(entity.getUid())
+                .name(entity.getName())
+                .description(entity.getDescription())
+                .status(entity.getStatus())
+                .children(children.stream().map(child -> buildHierarchyTree(child, visited)).toList())
+                .build();
+    }
+
     private void attachParent(ServiceClassificationCreateUpdateRequest request, ServiceClassificationEntity entity) throws GlobalException {
         if (request.getParentId() == null) {
             entity.setParentClassification(null);
             return;
         }
+        if (entity.getUid() != null && entity.getUid().equals(request.getParentId())) {
+            throw new GlobalException("A classification cannot be its own parent.");
+        }
         ServiceClassificationEntity parent = serviceClassificationRepository.findById(request.getParentId())
                 .orElseThrow(() -> new GlobalException(ErrorCodeEnum._002.getMessage()));
+        if (parent.getStatus() != com.swifttech.edx.dm.enums.StatusEnum.ACTIVE) {
+            throw new GlobalException("A classification cannot be assigned to an inactive parent.");
+        }
         entity.setParentClassification(parent);
     }
 

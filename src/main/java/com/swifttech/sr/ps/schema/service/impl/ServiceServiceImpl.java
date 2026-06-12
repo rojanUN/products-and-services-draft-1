@@ -3,6 +3,7 @@ package com.swifttech.sr.ps.schema.service.impl;
 import com.swifttech.edx.dm.am.enums.ErrorCodeEnum;
 import com.swifttech.edx.dm.am.enums.SuccessCodeEnum;
 import com.swifttech.edx.dm.builder.ServiceResponseBuilder;
+import com.swifttech.edx.dm.enums.StatusEnum;
 import com.swifttech.edx.dm.exception.GlobalException;
 import com.swifttech.edx.dm.payload.request.PaginationRequest;
 import com.swifttech.edx.dm.payload.response.DataPaginationResponse;
@@ -45,8 +46,8 @@ public class ServiceServiceImpl implements ServiceService {
         ServiceEntity entity = ServiceMapper.toEntity(request);
         attachRelations(request, entity);
         attachValueComponents(request, entity);
+        attachProducts(request, entity);
         ServiceEntity saved = Utility.handlePersist(entity, serviceRepository);
-        linkProducts(request, saved);
         ServiceResponse response = ServiceMapper.toResponse(saved);
         return ServiceResponseBuilder.buildSuccessResponse(SuccessCodeEnum._100.getMessage(), response);
     }
@@ -60,7 +61,7 @@ public class ServiceServiceImpl implements ServiceService {
         ServiceMapper.toUpdate(request, entity);
         attachRelations(request, entity);
         attachValueComponents(request, entity);
-        linkProducts(request, entity);
+        attachProducts(request, entity);
         Utility.handlePersist(entity, serviceRepository);
         return ServiceResponseBuilder.buildSuccessResponse(SuccessCodeEnum._100.getMessage());
     }
@@ -87,9 +88,12 @@ public class ServiceServiceImpl implements ServiceService {
         if (request == null) {
             throw new GlobalException(ErrorCodeEnum._001.getMessage());
         }
-        if (StringUtils.isNotBlank(request.getName())) {
-            if (serviceRepository.existsByName(request.getName())) {
-                throw new GlobalException(ErrorCodeEnum._003.getMessage());
+        if (request.getServiceCategoryId() == null) {
+            throw new GlobalException("Service Category is mandatory.");
+        }
+        if (StringUtils.isNotBlank(request.getName()) && request.getServiceClassificationId() != null) {
+            if (serviceRepository.existsByNameAndServiceClassificationUid(request.getName(), request.getServiceClassificationId())) {
+                throw new GlobalException("A service with this name already exists within the same service classification.");
             }
         }
     }
@@ -98,9 +102,9 @@ public class ServiceServiceImpl implements ServiceService {
         if (request == null) {
             throw new GlobalException(ErrorCodeEnum._001.getMessage());
         }
-        if (StringUtils.isNotBlank(request.getName())) {
-            if (serviceRepository.existsByNameAndUidNot(request.getName(), id)) {
-                throw new GlobalException(ErrorCodeEnum._003.getMessage());
+        if (StringUtils.isNotBlank(request.getName()) && request.getServiceClassificationId() != null) {
+            if (serviceRepository.existsByNameAndServiceClassificationUidAndUidNot(request.getName(), request.getServiceClassificationId(), id)) {
+                throw new GlobalException("A service with this name already exists within the same service classification.");
             }
         }
     }
@@ -119,38 +123,46 @@ public class ServiceServiceImpl implements ServiceService {
         entity.setServiceClassification(classification);
     }
 
-    private void attachValueComponents(ServiceCreateUpdateRequest request, ServiceEntity entity) {
+    private void attachValueComponents(ServiceCreateUpdateRequest request, ServiceEntity entity) throws GlobalException {
         if (request.getValueComponentIds() != null && !request.getValueComponentIds().isEmpty()) {
+            Set<Long> existingIds = entity.getValueComponents() != null
+                    ? entity.getValueComponents().stream().map(ValueComponentEntity::getUid).collect(Collectors.toSet())
+                    : Collections.emptySet();
+
             Set<ValueComponentEntity> valueComponents = request.getValueComponentIds().stream()
-                    .map(vcId -> {
-                        try {
-                            return valueComponentRepository.findById(vcId)
-                                    .orElseThrow(() -> new GlobalException(ErrorCodeEnum._002.getMessage()));
-                        } catch (GlobalException e) {
-                            throw new RuntimeException(e);
-                        }
-                    })
+                    .map(vcId -> resolveValueComponentForService(vcId, existingIds))
                     .collect(Collectors.toSet());
             entity.setValueComponents(valueComponents);
-        } else {
-            entity.setValueComponents(Collections.emptySet());
         }
     }
 
-    private void linkProducts(ServiceCreateUpdateRequest request, ServiceEntity entity) {
+    private ValueComponentEntity resolveValueComponentForService(Long vcId, Set<Long> existingIds) {
+        if (existingIds.contains(vcId)) {
+            throw new RuntimeException("The same value component cannot be added to a service more than once.");
+        }
+        ValueComponentEntity vc = valueComponentRepository.findById(vcId)
+                .orElseThrow(() -> new RuntimeException(new GlobalException(ErrorCodeEnum._002.getMessage())));
+        if (vc.getStatus() != StatusEnum.ACTIVE) {
+            throw new RuntimeException("Only active value components can be assigned.");
+        }
+        if (vc.getDateFrom() != null && vc.getDateTo() != null && vc.getDateFrom().isAfter(vc.getDateTo())) {
+            throw new RuntimeException("Value component has invalid date range.");
+        }
+        return vc;
+    }
+
+    private void attachProducts(ServiceCreateUpdateRequest request, ServiceEntity entity) {
         if (request.getProductIds() != null && !request.getProductIds().isEmpty()) {
-            Set<ProductEntity> products = request.getProductIds().stream()
-                    .map(pId -> {
-                        try {
-                            return productRepository.findById(pId)
-                                    .orElseThrow(() -> new GlobalException(ErrorCodeEnum._002.getMessage()));
-                        } catch (GlobalException e) {
-                            throw new RuntimeException(e);
-                        }
-                    })
-                    .collect(Collectors.toSet());
-            products.forEach(p -> p.setService(entity));
-            productRepository.saveAll(products);
+            request.getProductIds().forEach(pId -> {
+                ProductEntity product = productRepository.findById(pId)
+                        .orElseThrow(() -> new RuntimeException(new GlobalException(ErrorCodeEnum._002.getMessage())));
+                if (product.getServices() == null) {
+                    product.setServices(java.util.Collections.singleton(entity));
+                } else {
+                    product.getServices().add(entity);
+                }
+                productRepository.save(product);
+            });
         }
     }
 

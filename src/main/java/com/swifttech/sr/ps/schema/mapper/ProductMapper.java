@@ -3,8 +3,10 @@ package com.swifttech.sr.ps.schema.mapper;
 import com.swifttech.sr.ps.schema.entity.ProductEntity;
 import com.swifttech.sr.ps.schema.model.request.ProductCreateUpdateRequest;
 import com.swifttech.sr.ps.schema.model.response.ProductResponse;
+import com.swifttech.sr.ps.schema.model.response.ServiceResponse;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -38,9 +40,18 @@ public final class ProductMapper {
             response.setProductAndServiceClassificationId(entity.getProductAndServiceClassification().getUid());
             response.setProductAndServiceClassificationName(entity.getProductAndServiceClassification().getName());
         }
-        if (entity.getService() != null) {
-            response.setServiceId(entity.getService().getUid());
-            response.setServiceName(entity.getService().getName());
+        if (entity.getServices() != null && !entity.getServices().isEmpty()) {
+            List<ServiceResponse> serviceResponses = entity.getServices().stream()
+                    .map(s -> ServiceResponse.builder()
+                            .id(s.getUid())
+                            .name(s.getName())
+                            .serviceClassificationId(s.getServiceClassification() != null ? s.getServiceClassification().getUid() : null)
+                            .serviceClassificationName(s.getServiceClassification() != null ? s.getServiceClassification().getName() : null)
+                            .serviceCategoryId(s.getServiceCategory() != null ? s.getServiceCategory().getUid() : null)
+                            .serviceCategoryName(s.getServiceCategory() != null ? s.getServiceCategory().getName() : null)
+                            .build())
+                    .toList();
+            response.setServices(serviceResponses);
         }
         if (entity.getDynamicProductAttributes() != null) {
             response.setDynamicAttributes(

@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -41,9 +42,9 @@ public class ServiceEntity extends BaseEntity {
             joinColumns = @JoinColumn(name = "service_id"),
             inverseJoinColumns = @JoinColumn(name = "value_component_id")
     )
-    private Set<ValueComponentEntity> valueComponents;
+    private Set<ValueComponentEntity> valueComponents = new HashSet<>();
 
-    @OneToMany(mappedBy = "service", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    private Set<ProductEntity> products;
+    @ManyToMany(mappedBy = "services")
+    private Set<ProductEntity> products = new HashSet<>();
 
 }

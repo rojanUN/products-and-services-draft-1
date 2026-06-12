@@ -3,6 +3,7 @@ package com.swifttech.sr.ps.schema.service.impl;
 import com.swifttech.edx.dm.am.enums.ErrorCodeEnum;
 import com.swifttech.edx.dm.am.enums.SuccessCodeEnum;
 import com.swifttech.edx.dm.builder.ServiceResponseBuilder;
+import com.swifttech.edx.dm.enums.StatusEnum;
 import com.swifttech.edx.dm.exception.GlobalException;
 import com.swifttech.edx.dm.payload.request.PaginationRequest;
 import com.swifttech.edx.dm.payload.response.DataPaginationResponse;
@@ -49,6 +50,7 @@ public class ProductServiceImpl implements ProductService {
         ProductEntity entity = ProductMapper.toEntity(request);
         attachRelations(request, entity);
         attachValueComponents(request, entity);
+        attachServices(request, entity);
         ProductEntity saved = Utility.handlePersist(entity, productRepository);
         if (request.getDynamicAttributes() != null && !request.getDynamicAttributes().isEmpty()) {
             saved.getDynamicProductAttributes().clear();
@@ -72,6 +74,7 @@ public class ProductServiceImpl implements ProductService {
         ProductMapper.toUpdate(request, entity);
         attachRelations(request, entity);
         attachValueComponents(request, entity);
+        attachServices(request, entity);
         if (request.getDynamicAttributes() != null) {
             dynamicProductAttributeRepository.deleteByProductUid(id);
             entity.getDynamicProductAttributes().clear();
@@ -129,6 +132,17 @@ public class ProductServiceImpl implements ProductService {
     private void attachRelations(ProductCreateUpdateRequest request, ProductEntity entity) throws GlobalException {
         ProductClassificationEntity productClassification = productClassificationRepository.findById(request.getProductClassificationId())
                 .orElseThrow(() -> new GlobalException(ErrorCodeEnum._002.getMessage()));
+
+        if (productClassification.getStatus() != StatusEnum.ACTIVE) {
+            throw new GlobalException(ErrorCodeEnum._004.getMessage());
+        }
+
+        List<ProductClassificationEntity> children = productClassificationRepository
+                .findByParentClassificationUid(request.getProductClassificationId());
+        if (!children.isEmpty()) {
+            throw new GlobalException("Products can only be assigned to a leaf-node classification.");
+        }
+
         entity.setProductClassification(productClassification);
 
         ProductTypeEntity productType = productTypeRepository.findById(request.getProductTypeId())
@@ -146,32 +160,61 @@ public class ProductServiceImpl implements ProductService {
         ProductAndServiceClassificationEntity psc = productAndServiceClassificationRepository.findById(request.getProductAndServiceClassificationId())
                 .orElseThrow(() -> new GlobalException(ErrorCodeEnum._002.getMessage()));
         entity.setProductAndServiceClassification(psc);
-
-        if (request.getServiceId() != null) {
-            ServiceEntity service = serviceRepository.findById(request.getServiceId())
-                    .orElseThrow(() -> new GlobalException(ErrorCodeEnum._002.getMessage()));
-            entity.setService(service);
-        } else {
-            entity.setService(null);
-        }
     }
 
-    private void attachValueComponents(ProductCreateUpdateRequest request, ProductEntity entity) {
+    private void attachValueComponents(ProductCreateUpdateRequest request, ProductEntity entity) throws GlobalException {
         if (request.getValueComponentIds() != null && !request.getValueComponentIds().isEmpty()) {
             Set<ValueComponentEntity> valueComponents = request.getValueComponentIds().stream()
-                    .map(vcId -> {
-                        try {
-                            return valueComponentRepository.findById(vcId)
-                                    .orElseThrow(() -> new GlobalException(ErrorCodeEnum._002.getMessage()));
-                        } catch (GlobalException e) {
-                            throw new RuntimeException(e);
-                        }
-                    })
+                    .map(vcId -> resolveValueComponentForProduct(vcId))
                     .collect(Collectors.toSet());
             entity.setValueComponents(valueComponents);
         } else {
             entity.setValueComponents(Collections.emptySet());
         }
+    }
+
+    private ValueComponentEntity resolveValueComponentForProduct(Long vcId) {
+        ValueComponentEntity vc = valueComponentRepository.findById(vcId)
+                .orElseThrow(() -> new RuntimeException(new GlobalException(ErrorCodeEnum._002.getMessage())));
+        if (vc.getStatus() != StatusEnum.ACTIVE) {
+            throw new RuntimeException("Only active value components can be assigned.");
+        }
+        return vc;
+    }
+
+    private void attachServices(ProductCreateUpdateRequest request, ProductEntity entity) throws GlobalException {
+        if (request.getServiceIds() != null && !request.getServiceIds().isEmpty()) {
+            ProductClassificationEntity rootProductClassification = findRootClassification(entity.getProductClassification());
+            ProductClassificationEntity pscRootClassification = findRootClassification(
+                    entity.getProductAndServiceClassification().getProductClassification());
+
+            Set<ServiceEntity> services = request.getServiceIds().stream()
+                    .map(sId -> resolveServiceForProduct(sId, rootProductClassification, pscRootClassification))
+                    .collect(Collectors.toSet());
+            entity.setServices(services);
+        } else {
+            entity.setServices(Collections.emptySet());
+        }
+    }
+
+    private ServiceEntity resolveServiceForProduct(Long sId, ProductClassificationEntity rootProductClassification,
+                                                    ProductClassificationEntity pscRootClassification) {
+        ServiceEntity service = serviceRepository.findById(sId)
+                .orElseThrow(() -> new RuntimeException(new GlobalException(ErrorCodeEnum._002.getMessage())));
+
+        if (!rootProductClassification.getUid().equals(pscRootClassification.getUid())) {
+            throw new RuntimeException("Product root classification must match the Product and Service Classification's root classification.");
+        }
+
+        return service;
+    }
+
+    private ProductClassificationEntity findRootClassification(ProductClassificationEntity classification) {
+        ProductClassificationEntity current = classification;
+        while (current.getParentClassification() != null) {
+            current = current.getParentClassification();
+        }
+        return current;
     }
 
 }

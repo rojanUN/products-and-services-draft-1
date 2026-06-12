@@ -18,4 +18,6 @@ public interface ServiceClassificationService {
 
     GlobalResponse findServiceClassificationPaginatedData(PaginationRequest request) throws GlobalException;
 
+    GlobalResponse findServiceClassificationHierarchy() throws GlobalException;
+
 }

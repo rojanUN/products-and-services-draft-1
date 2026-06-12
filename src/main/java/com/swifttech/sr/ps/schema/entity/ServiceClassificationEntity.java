@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -37,6 +38,6 @@ public class ServiceClassificationEntity extends BaseEntity {
     private ServiceClassificationEntity parentClassification;
 
     @OneToMany(mappedBy = "serviceClassification", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    private Set<ServiceEntity> services;
+    private Set<ServiceEntity> services = new HashSet<>();
 
 }

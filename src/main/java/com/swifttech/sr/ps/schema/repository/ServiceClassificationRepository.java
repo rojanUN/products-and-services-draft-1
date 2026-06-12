@@ -13,4 +13,6 @@ public interface ServiceClassificationRepository extends BaseRepository<ServiceC
 
     List<ServiceClassificationEntity> findByParentClassificationIsNull();
 
+    List<ServiceClassificationEntity> findByParentClassificationUid(Long parentId);
+
 }

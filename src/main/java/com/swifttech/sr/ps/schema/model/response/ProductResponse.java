@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -26,8 +27,7 @@ public class ProductResponse {
     private String productComponentName;
     private Long productAndServiceClassificationId;
     private String productAndServiceClassificationName;
-    private Long serviceId;
-    private String serviceName;
+    private List<ServiceResponse> services;
     private boolean hasDynamicAttributes;
     private Set<DynamicProductAttributeResponse> dynamicAttributes;
 

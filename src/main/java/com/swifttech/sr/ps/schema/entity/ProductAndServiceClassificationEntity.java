@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -41,6 +42,6 @@ public class ProductAndServiceClassificationEntity extends BaseEntity {
             joinColumns = @JoinColumn(name = "classification_id"),
             inverseJoinColumns = @JoinColumn(name = "value_component_id")
     )
-    private Set<ValueComponentEntity> valueComponents;
+    private Set<ValueComponentEntity> valueComponents = new HashSet<>();
 
 }

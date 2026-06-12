@@ -32,7 +32,7 @@ public class ProductCreateUpdateRequest {
     @NotNull
     private Long productAndServiceClassificationId;
 
-    private Long serviceId;
+    private Set<Long> serviceIds;
     private boolean hasDynamicAttributes;
     private Set<Long> valueComponentIds;
     private Set<DynamicProductAttributeCreateUpdateRequest> dynamicAttributes;

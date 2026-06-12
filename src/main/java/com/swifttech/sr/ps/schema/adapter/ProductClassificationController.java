@@ -48,4 +48,9 @@ public class ProductClassificationController {
         return ResponseEntity.ok(productClassificationService.findProductClassificationPaginatedData(request));
     }
 
+    @GetMapping("product-classification/hierarchy")
+    public ResponseEntity<GlobalResponse> findHierarchy() throws GlobalException {
+        return ResponseEntity.ok(productClassificationService.findProductClassificationHierarchy());
+    }
+
 }

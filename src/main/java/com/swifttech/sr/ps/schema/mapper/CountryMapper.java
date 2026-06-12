@@ -29,14 +29,15 @@ public final class CountryMapper {
         if (request == null) {
             return null;
         }
-        return CountryEntity.builder()
-//                .name(request.getName())
+        CountryEntity entity = CountryEntity.builder()
                 .alpha2Code(request.getAlpha2Code())
                 .alpha3Code(request.getAlpha3Code())
                 .numericCode(request.getNumericCode())
                 .dialCode(request.getDialCode())
                 .timezone(request.getTimezone())
                 .build();
+        entity.setName(request.getName());
+        return entity;
     }
 
     public static void toUpdate(CountryCreateUpdateRequest request, CountryEntity entity) {

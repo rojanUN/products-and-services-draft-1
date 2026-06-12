@@ -13,4 +13,6 @@ public interface ProductClassificationRepository extends BaseRepository<ProductC
 
     List<ProductClassificationEntity> findByParentClassificationIsNull();
 
+    List<ProductClassificationEntity> findByParentClassificationUid(Long parentId);
+
 }

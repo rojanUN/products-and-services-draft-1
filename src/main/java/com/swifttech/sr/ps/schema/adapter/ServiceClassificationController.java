@@ -48,4 +48,9 @@ public class ServiceClassificationController {
         return ResponseEntity.ok(serviceClassificationService.findServiceClassificationPaginatedData(request));
     }
 
+    @GetMapping("service-classification/hierarchy")
+    public ResponseEntity<GlobalResponse> findHierarchy() throws GlobalException {
+        return ResponseEntity.ok(serviceClassificationService.findServiceClassificationHierarchy());
+    }
+
 }
