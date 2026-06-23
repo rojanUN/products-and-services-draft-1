@@ -20,6 +20,116 @@ spring:
     show-sql: false
     open-in-view: true
 
+message:
+  management:
+    moduleName:
+      PS: SPS
+
+    serviceName:
+      BusinessEntityCategoryService: BEC
+      CountryService: CON
+      CurrencyClassificationService: CCL
+      CurrencyService: CUR
+      DynamicProductAttributeService: DPA
+      ProductAndServiceClassificationService: PSC
+      ProductClassificationService: PCL
+      ProductComponentService: PCO
+      ProductService: PRO
+      ProductTypeService: PTY
+      ServiceClassificationService: SCL
+      ServiceService: SRV
+      ValueApplicationService: VAP
+      ValueComponentService: VCO
+      ValueComponentTypeService: VCT
+      ValueMovementService: VMO
+
+    method:
+      BusinessEntityCategoryService:
+        createBusinessEntityCategory: CRE
+        updateBusinessEntityCategory: UPD
+        findBusinessEntityCategoryById: FID
+        findBusinessEntityCategoryPaginatedData: PLS
+      CountryService:
+        createCountry: CRE
+        updateCountry: UPD
+        findCountryById: FID
+        findCountryPaginatedData: PLS
+      CurrencyClassificationService:
+        createCurrencyClassification: CRE
+        updateCurrencyClassification: UPD
+        findCurrencyClassificationById: FID
+        findCurrencyClassificationPaginatedData: PLS
+      CurrencyService:
+        createCurrency: CRE
+        updateCurrency: UPD
+        updateCurrencyStatus: UST
+        findCurrencyById: FID
+        findCurrencyPaginatedData: PLS
+      DynamicProductAttributeService:
+        createDynamicProductAttribute: CRE
+        updateDynamicProductAttribute: UPD
+        findDynamicProductAttributesByProductId: FID
+      ProductAndServiceClassificationService:
+        createProductAndServiceClassification: CRE
+        updateProductAndServiceClassification: UPD
+        findProductAndServiceClassificationById: FID
+        findProductAndServiceClassificationPaginatedData: PLS
+      ProductClassificationService:
+        createProductClassification: CRE
+        updateProductClassification: UPD
+        updateProductClassificationStatus: UST
+        findProductClassificationById: FID
+        findProductClassificationPaginatedData: PLS
+        findProductClassificationHierarchy: HIE
+      ProductComponentService:
+        createProductComponent: CRE
+        updateProductComponent: UPD
+        findProductComponentById: FID
+        findProductComponentPaginatedData: PLS
+      ProductService:
+        createProduct: CRE
+        updateProduct: UPD
+        findProductById: FID
+        findProductPaginatedData: PLS
+      ProductTypeService:
+        createProductType: CRE
+        updateProductType: UPD
+        findProductTypeById: FID
+        findProductTypePaginatedData: PLS
+      ServiceClassificationService:
+        createServiceClassification: CRE
+        updateServiceClassification: UPD
+        updateServiceClassificationStatus: UST
+        findServiceClassificationById: FID
+        findServiceClassificationPaginatedData: PLS
+        findServiceClassificationHierarchy: HIE
+      ServiceService:
+        createService: CRE
+        updateService: UPD
+        findServiceById: FID
+        findServicePaginatedData: PLS
+      ValueApplicationService:
+        createValueApplication: CRE
+        updateValueApplication: UPD
+        findValueApplicationById: FID
+        findValueApplicationPaginatedData: PLS
+      ValueComponentService:
+        createValueComponent: CRE
+        updateValueComponent: UPD
+        updateValueComponentStatus: UST
+        findValueComponentById: FID
+        findValueComponentPaginatedData: PLS
+      ValueComponentTypeService:
+        createValueComponentType: CRE
+        updateValueComponentType: UPD
+        findValueComponentTypeById: FID
+        findValueComponentTypePaginatedData: PLS
+      ValueMovementService:
+        createValueMovement: CRE
+        updateValueMovement: UPD
+        findValueMovementById: FID
+        findValueMovementPaginatedData: PLS
+
 server:
   port: 8888
 

@@ -18,4 +18,5 @@ public class ServiceClassificationCreateUpdateRequest {
     private String name;
     private String description;
     private Long parentId;
+
 }

@@ -23,7 +23,7 @@ import lombok.Setter;
 public class DynamicProductAttributeEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity product;
 
     private String attributeName;
@@ -31,4 +31,5 @@ public class DynamicProductAttributeEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private DynamicProductAttributeTypeEnum attributeType;
+
 }

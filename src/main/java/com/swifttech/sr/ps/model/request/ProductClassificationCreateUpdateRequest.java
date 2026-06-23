@@ -18,4 +18,5 @@ public class ProductClassificationCreateUpdateRequest {
     private String name;
     private String description;
     private Long parentId;
+
 }

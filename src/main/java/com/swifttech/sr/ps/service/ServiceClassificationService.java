@@ -1,8 +1,8 @@
 package com.swifttech.sr.ps.service;
 
 import com.swifttech.edx.dm.exception.GlobalException;
-import com.swifttech.edx.dm.payload.request.PaginationRequest;
 import com.swifttech.edx.dm.payload.request.StatusUpdateRequest;
+import com.swifttech.sr.ps.model.request.ServiceClassificationDataRequest;
 import com.swifttech.edx.dm.payload.response.GlobalResponse;
 import com.swifttech.sr.ps.model.request.ServiceClassificationCreateUpdateRequest;
 
@@ -16,6 +16,8 @@ public interface ServiceClassificationService {
 
     GlobalResponse findServiceClassificationById(Long id) throws GlobalException;
 
-    GlobalResponse findServiceClassificationPaginatedData(PaginationRequest request) throws GlobalException;
+    GlobalResponse findServiceClassificationPaginatedData(ServiceClassificationDataRequest request) throws GlobalException;
+
+    GlobalResponse findServiceClassificationHierarchy() throws GlobalException;
 
 }

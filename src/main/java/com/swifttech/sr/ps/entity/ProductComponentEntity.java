@@ -1,4 +1,3 @@
-/*
 package com.swifttech.sr.ps.entity;
 
 import com.swifttech.edx.dm.entity.BaseEntity;
@@ -22,21 +21,9 @@ public class ProductComponentEntity extends BaseEntity {
 
     private String name;
     private String description;
-//    private String referenceId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_type_id")
     private ProductTypeEntity productType;
 
-*/
-/*    @Enumerated(EnumType.STRING)
-    private ProductComponentType componentType;
-
-    public enum ProductComponentType {
-        CURRENCY,
-        CURRENCY_PAIR,
-        COMMODITY;
-    }*//*
-
 }
-*/

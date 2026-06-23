@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -26,17 +27,14 @@ public class ProductTypeEntity extends BaseEntity {
     private String name;
     private String description;
 
-/*    @OneToMany(mappedBy = "productType", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST},  fetch = FetchType.LAZY)
-    private Set<ProductComponentEntity> productComponents;*/
-
-    @OneToMany(mappedBy = "productType", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST},  fetch = FetchType.LAZY)
-    private Set<ProductEntity> products;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_classification_id", nullable = false)
     private ProductClassificationEntity productClassification;
 
-    @OneToMany(mappedBy = "productType",orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    private Set<ValueComponentEntity> valueComponents;
+    @OneToMany(mappedBy = "productType", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    private Set<ProductEntity> products = new HashSet<>();
+
+    @OneToMany(mappedBy = "productType", orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    private Set<ProductComponentEntity> productComponents = new HashSet<>();
 
 }

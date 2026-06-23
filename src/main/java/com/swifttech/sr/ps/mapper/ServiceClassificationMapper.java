@@ -8,17 +8,21 @@ import com.swifttech.sr.ps.model.response.ServiceClassificationResponse;
 public final class ServiceClassificationMapper {
 
     private ServiceClassificationMapper() {
-
     }
 
     public static ServiceClassificationResponse toResponse(ServiceClassificationEntity entity) {
         if (entity == null) {
             return null;
         }
-
         ServiceClassificationResponse response = new ServiceClassificationResponse();
+        response.setId(entity.getUid());
         response.setName(entity.getName());
-
+        response.setDescription(entity.getDescription());
+        response.setStatus(entity.getStatus());
+        if (entity.getParentClassification() != null) {
+            response.setParentId(entity.getParentClassification().getUid());
+            response.setParentName(entity.getParentClassification().getName());
+        }
         return response;
     }
 
@@ -40,4 +44,5 @@ public final class ServiceClassificationMapper {
         entity.setName(request.getName());
         entity.setDescription(request.getDescription());
     }
+
 }

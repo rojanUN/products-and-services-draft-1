@@ -1,0 +1,173 @@
+message:
+  management:
+    moduleName:
+      am: MST
+      master: MST
+      rsp: RSP
+      ts: TXN
+      exchangerate: TXN
+      transaction: TXN
+      eam: USR
+      cm: CUS
+      customer: CUS
+      beneficiary: CUS
+      adm: ADM
+
+    serviceName:
+      # Admin Service
+      Individual: IND
+      Salutation: SAL
+      # Customer Service
+      BeneficiaryService: BFS
+      ApplicationUser: AUS
+      CustomerManagement: CUS
+      Document: DOC
+      MobileScreenConfig: MSC
+      UiLocalization: ULC
+      # Transaction Service
+      ExchangeRateCalculator: ERC
+      Transaction: TRA
+      # User Service
+      AuthenticationChallenge: ACL
+      AuthHelper: AHE
+      Auth: AUT
+      Group: GRP
+      Policy: POL
+      Role: ROL
+      UserDetail: USD
+      User: USR
+      LoginAttribute: LOA
+      Rsp: RSP
+      AuthenticationProperties: AUP
+      SupportedCorridors: SCD
+      PaymentServiceType: PST
+
+      #Master
+      AddressType: ADT
+      Country: CON
+      Currency: CUR
+      District: DST
+      DocumentType: DOC
+      EmploymentType: EMP
+      Gender: GEN
+      Income: INC
+      IndividualType: IND
+      IssueAuthority: ISA
+      Language: LAN
+      MaturityLevel: MTL
+      Occupation: OCC
+      ProcessStatus: PSS
+      Purpose: PUR
+      Relationship: REL
+      State: STA
+      TimeZone: TMZ
+      UserType: UST
+      PaymentInstrument: PMT
+      ApplicationModule: APM
+      Application: APP
+      ApplicationResource: APR
+      ApplicationService: APS
+      DefaultLabel: DLB
+      DefaultMessage: DMG
+      Message: MSG
+      Label: LBL
+      LocaleProfile: LPF
+      LocaleProperty: LPR
+      TimeFormat: TFT
+      Orientation: ORI
+      NumberFormat: NFT
+      DateFormat: DFT
+      InstrumentType: INT
+      PromotionType: PRT
+      PromotionChannel: PMC953860
+      Promotion: PRO
+      ServiceCategory: SRC
+      SystemVersion: SYV
+
+    #      PermissionValidation: PVS
+    method:
+      #Master
+      Promotion:
+        viewImage: VIM
+
+      SystemVersion:
+        getLatestSystemVersion: LSV
+      rsp:
+        findDateFormat: FDF
+
+      # Customer Service Methods
+      ApplicationUser:
+        validateApplicationUserOtp: OTV
+        resendApplicationUserOtp: ROT
+        validateApplicationUserAddress: AVA
+        applicationUserLogin: LGN
+        applicationUserAccountValidate: AAV
+        registerUser: RUS
+        logoutApplicationUser: LGO
+        getKycSettings: GKS
+        saveKycSettings: SKS
+        getDynamicField: GDF
+        fetchCountriesAndServiceTypes: FCS
+        getDashboard: GDB
+        registerKyc: RKY
+        userExists: UEX
+        getUserProfileInfo: GUP
+        buildCustomerProfileResponse: BCP
+        getAddressParts: GAP
+        skipKyc: SKY
+      BeneficiaryService:
+        findDueDiligenceStaticData: CDD
+        createBeneficiary: CBE
+        updateBeneficiary: UBE
+        updateBeneficiaryStatus: UBS
+        removeBeneficiary: RMV
+        findBeneficiaryById: FBI
+        findBeniPaginatedData: FBP
+        findBankListByCountry: FBL
+        findBankBranchList: FBB
+        findCountryPayoutModes: FCP
+        findPurposeOfRemittance: FPR
+        findSourceOfFund: FSF
+        getCashPickupLocation: GCP
+        getDynamicField: GDF
+      Document:
+        uploadDocument: UPL
+      MobileScreenConfig:
+        createScreenMobileConfig: CSM
+        updateScreenMobileConfig: USM
+        findMobileConfigByVersion: FSM
+      UiLocalization:
+        createUiLocalization: CLC
+        updateUiLocalization: MLC
+        findUiLocalizationByScreenRspAndLocale: FLC
+        deleteUiLocalization: DLC
+        getMobileScreenClassifiers: GSC
+      # Transaction Service Methods
+      ExchangeRateCalculator:
+        calculateExchangeRateDefault: CEX
+        calculateRate: CRA
+        getPayoutPaymentMode: PPM
+        getCurrencyBySourceAndDestinationCountry: CSD
+      Transaction:
+        sendTransaction: SET
+        getTransactionHistory: GTH
+        getPaymentServiceType: GPS
+        transactionStatusUpdate: TSU
+        depositTransactionSlip: DTS
+        findDueDiligenceStaticData: CDD
+      # User Service Methods
+      AuthenticationChallenge:
+        generateChallenge: GAC
+      Auth:
+        getLoginDetail: GLD
+        getToken: GTN
+        getCustomerToken: GCT
+        adminRefreshToken: ART
+        adminLogout: ALG
+        customerRefreshToken: CRT
+        customerLogout: CLG
+        challengeBasedLogin: CBL
+        requestForgetPassword: RFP
+        validateOtp: VOT
+        changePassword: CHP
+        getPasswordPolicy: GPP
