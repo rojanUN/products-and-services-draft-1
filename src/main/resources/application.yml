@@ -132,7 +132,27 @@ message:
 
 server:
   port: 8888
+  url: http://localhost:8888
 
 logging:
   level:
     org.springframework.boot.context.config: WARN
+
+api:
+  module: ps
+
+minio:
+  endpoint: "A"
+  accessKey: "A"
+  secretKey: "A"
+  bucketName: "A"
+  retrieveUrl: "A"
+  legal-resource-dir: "a"
+
+aws:
+  s3:
+    accessKey: test
+    secretKey: test
+    region: ap-south-1
+    bucketName: remit-dev
+    endpoint: "http://localhost:4566"

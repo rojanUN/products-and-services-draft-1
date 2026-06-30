@@ -129,4 +129,4 @@ See [`MESSAGE_CONFIG.md`](../MESSAGE_CONFIG.md) for the full message code refere
 - `com.swifttech.edx.dm.am.enums.SuccessCodeEnum`
 - `com.swifttech.edx.dm.repository.BaseRepository`
 - `io.micrometer.common.util.StringUtils`
-- `com.swifttech.sr.ps.utils.SpecificationHelper`
+- `utils.com.swifttech.edx.sr.ps.SpecificationHelper`

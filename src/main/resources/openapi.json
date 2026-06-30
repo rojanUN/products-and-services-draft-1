@@ -1,0 +1,3277 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Products & Services API",
+    "description": "REST API for managing products, services, classifications, and value components",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8888",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/v2/products-services/value-movement/{id}/update": {
+      "put": {
+        "tags": [
+          "value-movement-controller"
+        ],
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueMovementCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-component/{id}/update": {
+      "put": {
+        "tags": [
+          "value-component-controller"
+        ],
+        "operationId": "update_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueComponentCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-component-type/{id}/update": {
+      "put": {
+        "tags": [
+          "value-component-type-controller"
+        ],
+        "operationId": "update_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueComponentTypeCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-application/{id}/update": {
+      "put": {
+        "tags": [
+          "value-application-controller"
+        ],
+        "operationId": "update_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueApplicationCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/service/{id}/update": {
+      "put": {
+        "tags": [
+          "service-controller"
+        ],
+        "operationId": "update_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/service-classification/{id}/update": {
+      "put": {
+        "tags": [
+          "service-classification-controller"
+        ],
+        "operationId": "update_5",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceClassificationCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product/{id}/update": {
+      "put": {
+        "tags": [
+          "product-controller"
+        ],
+        "operationId": "update_6",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-type/{id}/update": {
+      "put": {
+        "tags": [
+          "product-type-controller"
+        ],
+        "operationId": "update_7",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTypeCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-component/{id}/update": {
+      "put": {
+        "tags": [
+          "product-component-controller"
+        ],
+        "operationId": "update_8",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductComponentCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-classification/{id}/update": {
+      "put": {
+        "tags": [
+          "product-classification-controller"
+        ],
+        "operationId": "update_9",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductClassificationCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-and-service-classification/{id}/update": {
+      "put": {
+        "tags": [
+          "product-and-service-classification-controller"
+        ],
+        "operationId": "update_10",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductAndServiceClassificationCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/dynamic-attribute/{id}/update": {
+      "put": {
+        "tags": [
+          "dynamic-product-attribute-controller"
+        ],
+        "operationId": "updateAttribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DynamicProductAttributeCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/currency/{id}/update": {
+      "put": {
+        "tags": [
+          "currency-controller"
+        ],
+        "operationId": "update_11",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CurrencyCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/currency-classification/{id}/update": {
+      "put": {
+        "tags": [
+          "currency-classification-controller"
+        ],
+        "operationId": "update_12",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CurrencyClassificationCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/country/{id}/update": {
+      "put": {
+        "tags": [
+          "country-controller"
+        ],
+        "operationId": "update_13",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CountryCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/business-entity-category/{id}/update": {
+      "put": {
+        "tags": [
+          "business-entity-category-controller"
+        ],
+        "operationId": "update_14",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessEntityCategoryCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-movement/list": {
+      "post": {
+        "tags": [
+          "value-movement-controller"
+        ],
+        "operationId": "findAllPaginated",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueMovementDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-movement/create": {
+      "post": {
+        "tags": [
+          "value-movement-controller"
+        ],
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueMovementCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-component/list": {
+      "post": {
+        "tags": [
+          "value-component-controller"
+        ],
+        "operationId": "findAllPaginated_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueComponentDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-component/create": {
+      "post": {
+        "tags": [
+          "value-component-controller"
+        ],
+        "operationId": "create_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueComponentCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-component-type/list": {
+      "post": {
+        "tags": [
+          "value-component-type-controller"
+        ],
+        "operationId": "findAllPaginated_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueComponentTypeDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-component-type/create": {
+      "post": {
+        "tags": [
+          "value-component-type-controller"
+        ],
+        "operationId": "create_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueComponentTypeCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-application/list": {
+      "post": {
+        "tags": [
+          "value-application-controller"
+        ],
+        "operationId": "findAllPaginated_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueApplicationDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-application/create": {
+      "post": {
+        "tags": [
+          "value-application-controller"
+        ],
+        "operationId": "create_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValueApplicationCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/service/list": {
+      "post": {
+        "tags": [
+          "service-controller"
+        ],
+        "operationId": "findAllPaginated_4",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/service/create": {
+      "post": {
+        "tags": [
+          "service-controller"
+        ],
+        "operationId": "create_4",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/service-classification/list": {
+      "post": {
+        "tags": [
+          "service-classification-controller"
+        ],
+        "operationId": "findAllPaginated_5",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceClassificationDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/service-classification/create": {
+      "post": {
+        "tags": [
+          "service-classification-controller"
+        ],
+        "operationId": "create_5",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceClassificationCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product/{productId}/dynamic-attribute": {
+      "post": {
+        "tags": [
+          "dynamic-product-attribute-controller"
+        ],
+        "operationId": "addAttribute",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DynamicProductAttributeCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product/list": {
+      "post": {
+        "tags": [
+          "product-controller"
+        ],
+        "operationId": "findAllPaginated_6",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product/create": {
+      "post": {
+        "tags": [
+          "product-controller"
+        ],
+        "operationId": "create_6",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-type/list": {
+      "post": {
+        "tags": [
+          "product-type-controller"
+        ],
+        "operationId": "findAllPaginated_7",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTypeDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-type/create": {
+      "post": {
+        "tags": [
+          "product-type-controller"
+        ],
+        "operationId": "create_7",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTypeCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-component/list": {
+      "post": {
+        "tags": [
+          "product-component-controller"
+        ],
+        "operationId": "findAllPaginated_8",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductComponentDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-component/create": {
+      "post": {
+        "tags": [
+          "product-component-controller"
+        ],
+        "operationId": "create_8",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductComponentCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-classification/list": {
+      "post": {
+        "tags": [
+          "product-classification-controller"
+        ],
+        "operationId": "findAllPaginated_9",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductClassificationDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-classification/create": {
+      "post": {
+        "tags": [
+          "product-classification-controller"
+        ],
+        "operationId": "create_9",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductClassificationCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-and-service-classification/list": {
+      "post": {
+        "tags": [
+          "product-and-service-classification-controller"
+        ],
+        "operationId": "findAllPaginated_10",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductAndServiceClassificationDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-and-service-classification/create": {
+      "post": {
+        "tags": [
+          "product-and-service-classification-controller"
+        ],
+        "operationId": "create_10",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductAndServiceClassificationCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/currency/list": {
+      "post": {
+        "tags": [
+          "currency-controller"
+        ],
+        "operationId": "findAllPaginated_11",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CurrencyDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/currency/create": {
+      "post": {
+        "tags": [
+          "currency-controller"
+        ],
+        "operationId": "create_11",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CurrencyCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/currency-classification/list": {
+      "post": {
+        "tags": [
+          "currency-classification-controller"
+        ],
+        "operationId": "findAllPaginated_12",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CurrencyClassificationDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/currency-classification/create": {
+      "post": {
+        "tags": [
+          "currency-classification-controller"
+        ],
+        "operationId": "create_12",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CurrencyClassificationCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/country/list": {
+      "post": {
+        "tags": [
+          "country-controller"
+        ],
+        "operationId": "findAllPaginated_13",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CountryDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/country/create": {
+      "post": {
+        "tags": [
+          "country-controller"
+        ],
+        "operationId": "create_13",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CountryCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/business-entity-category/list": {
+      "post": {
+        "tags": [
+          "business-entity-category-controller"
+        ],
+        "operationId": "findAllPaginated_14",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessEntityCategoryDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/business-entity-category/create": {
+      "post": {
+        "tags": [
+          "business-entity-category-controller"
+        ],
+        "operationId": "create_14",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessEntityCategoryCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-component/{id}/status": {
+      "patch": {
+        "tags": [
+          "value-component-controller"
+        ],
+        "operationId": "updateStatus",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/service-classification/{id}/status": {
+      "patch": {
+        "tags": [
+          "service-classification-controller"
+        ],
+        "operationId": "updateStatus_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-classification/{id}/status": {
+      "patch": {
+        "tags": [
+          "product-classification-controller"
+        ],
+        "operationId": "updateStatus_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/currency/{id}/status": {
+      "patch": {
+        "tags": [
+          "currency-controller"
+        ],
+        "operationId": "updateStatus_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-movement/{id}": {
+      "get": {
+        "tags": [
+          "value-movement-controller"
+        ],
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-component/{id}": {
+      "get": {
+        "tags": [
+          "value-component-controller"
+        ],
+        "operationId": "findById_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-component-type/{id}": {
+      "get": {
+        "tags": [
+          "value-component-type-controller"
+        ],
+        "operationId": "findById_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/value-application/{id}": {
+      "get": {
+        "tags": [
+          "value-application-controller"
+        ],
+        "operationId": "findById_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/service/{id}": {
+      "get": {
+        "tags": [
+          "service-controller"
+        ],
+        "operationId": "findById_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/service-classification/{id}": {
+      "get": {
+        "tags": [
+          "service-classification-controller"
+        ],
+        "operationId": "findById_5",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/service-classification/hierarchy": {
+      "get": {
+        "tags": [
+          "service-classification-controller"
+        ],
+        "operationId": "findHierarchy",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product/{productId}/dynamic-attributes": {
+      "get": {
+        "tags": [
+          "dynamic-product-attribute-controller"
+        ],
+        "operationId": "findByProductId",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product/{id}": {
+      "get": {
+        "tags": [
+          "product-controller"
+        ],
+        "operationId": "findById_6",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-type/{id}": {
+      "get": {
+        "tags": [
+          "product-type-controller"
+        ],
+        "operationId": "findById_7",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-component/{id}": {
+      "get": {
+        "tags": [
+          "product-component-controller"
+        ],
+        "operationId": "findById_8",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-classification/{id}": {
+      "get": {
+        "tags": [
+          "product-classification-controller"
+        ],
+        "operationId": "findById_9",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-classification/hierarchy": {
+      "get": {
+        "tags": [
+          "product-classification-controller"
+        ],
+        "operationId": "findHierarchy_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/product-and-service-classification/{id}": {
+      "get": {
+        "tags": [
+          "product-and-service-classification-controller"
+        ],
+        "operationId": "findById_10",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/currency/{id}": {
+      "get": {
+        "tags": [
+          "currency-controller"
+        ],
+        "operationId": "findById_11",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/currency-classification/{id}": {
+      "get": {
+        "tags": [
+          "currency-classification-controller"
+        ],
+        "operationId": "findById_12",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/country/{id}": {
+      "get": {
+        "tags": [
+          "country-controller"
+        ],
+        "operationId": "findById_13",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/business-entity-category/{id}": {
+      "get": {
+        "tags": [
+          "business-entity-category-controller"
+        ],
+        "operationId": "findById_14",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/products-services/dynamic-attribute/{id}": {
+      "delete": {
+        "tags": [
+          "dynamic-product-attribute-controller"
+        ],
+        "operationId": "deleteAttribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ValueMovementCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CauseDetail": {
+        "type": "object",
+        "properties": {
+          "entityName": {
+            "type": "string"
+          },
+          "attributeName": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorCause": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CauseDetail"
+            }
+          }
+        }
+      },
+      "ErrorDetail": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "causes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ErrorCause"
+            }
+          }
+        }
+      },
+      "GlobalResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          },
+          "message": {
+            "type": "string"
+          },
+          "errorDetail": {
+            "$ref": "#/components/schemas/ErrorDetail"
+          }
+        }
+      },
+      "ValueComponentCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "computationModel": {
+            "type": "string",
+            "enum": [
+              "FLAT",
+              "TIER_AMOUNT",
+              "TIER_PERCENTAGE",
+              "CASHBACK"
+            ]
+          },
+          "computationEvent": {
+            "type": "string",
+            "enum": [
+              "COLLECTION",
+              "ROUTING",
+              "PAYOUT"
+            ]
+          },
+          "basedOnId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "valueMovementId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "appliesToId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "componentTypeId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dateFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "dateTo": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ValueComponentTypeCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ValueApplicationCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ServiceCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "serviceCategoryId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "serviceClassificationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "valueComponentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "uniqueItems": true
+          },
+          "productIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "name",
+          "serviceClassificationId"
+        ]
+      },
+      "ServiceClassificationCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "parentId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "DynamicProductAttributeCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "attributeName": {
+            "type": "string"
+          },
+          "attributeValue": {
+            "type": "string"
+          },
+          "attributeType": {
+            "type": "string",
+            "enum": [
+              "LINK",
+              "FIELD"
+            ]
+          }
+        },
+        "required": [
+          "attributeName",
+          "attributeType"
+        ]
+      },
+      "ProductCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "productClassificationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "productTypeId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "productComponentId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "productAndServiceClassificationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "serviceIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "uniqueItems": true
+          },
+          "hasDynamicAttributes": {
+            "type": "boolean"
+          },
+          "valueComponentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "uniqueItems": true
+          },
+          "dynamicAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DynamicProductAttributeCreateUpdateRequest"
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "name",
+          "productAndServiceClassificationId",
+          "productClassificationId",
+          "productTypeId"
+        ]
+      },
+      "ProductTypeCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "productClassificationId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "name",
+          "productClassificationId"
+        ]
+      },
+      "ProductComponentCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "productTypeId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ProductClassificationCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "parentId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ProductAndServiceClassificationCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "productClassificationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "serviceClassificationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "valueComponentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "productClassificationId",
+          "serviceClassificationId"
+        ]
+      },
+      "CurrencyCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "alphaThree": {
+            "type": "string"
+          },
+          "numeric": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "defaultRateFormat": {
+            "type": "string"
+          },
+          "defaultRateMasking": {
+            "type": "string"
+          },
+          "countryId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "classificationId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CurrencyClassificationCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CountryCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "alpha2Code": {
+            "type": "string"
+          },
+          "alpha3Code": {
+            "type": "string"
+          },
+          "numericCode": {
+            "type": "string"
+          },
+          "dialCode": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "BusinessEntityCategoryCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ValueMovementDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "ValueComponentDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "ValueComponentTypeDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "ValueApplicationDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "ServiceDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "ServiceClassificationDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "ProductDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "ProductTypeDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "ProductComponentDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "ProductClassificationDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "ProductAndServiceClassificationDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "CurrencyDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "CurrencyClassificationDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "CountryDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "BusinessEntityCategoryDataRequest": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 5
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "searchText": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pageNo",
+          "pageSize"
+        ]
+      },
+      "StatusUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE",
+              "DELETED",
+              "REJECTED"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

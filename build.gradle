@@ -35,6 +35,24 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testAnnotationProcessor 'org.projectlombok:lombok'
+
+
+    //dm reqs
+    //bucket
+    implementation 'io.minio:minio:8.6.0'
+
+    //Aws
+    implementation 'software.amazon.awssdk:sesv2:2.40.8'
+    implementation 'software.amazon.awssdk:s3:2.40.8'
+
+    implementation 'org.apache.tika:tika-core:3.2.3'
+    implementation 'org.modelmapper:modelmapper:3.2.0'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'com.google.code.gson:gson:2.13.1'
+    implementation "org.apache.commons:commons-csv:1.10.0"
+
+
+
 }
 
 tasks.named('test') {
